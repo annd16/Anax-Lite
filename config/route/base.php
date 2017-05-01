@@ -33,11 +33,15 @@
 // });
 
 
-// $app->router->add efter att vi flyttat kod från home-routen till en vy istället.
+// $app->router->add efter att vi flyttat kod från me-routen till en vy istället.
 $app->router->add("", function () use ($app) {
-    $app->view->add("take1/header", ["title" => "Home"]);
-    $app->view->add("take1/navbar");
-    $app->view->add("take1/home");
+    $app->view->add("take1/header", ["title" => "Me"]);
+    // $app->view->add("take1/navbar");
+    $app->view->add("navbar1/navbar1");
+    $app->view->add("take1/flash");
+    $app->view->add("take1/me");
+    $app->view->add("take1/byline");
+    $app->view->add("take1/footer");
 
     $app->response->setBody([$app->view, "render"])
                   ->send();
@@ -47,8 +51,25 @@ $app->router->add("", function () use ($app) {
 // $app->router->add efter att vi flyttat kod från about-routen till en vy istället.
 $app->router->add("about", function () use ($app) {
     $app->view->add("take1/header", ["title" => "About"]);
-    $app->view->add("take1/navbar");
+    // $app->view->add("take1/navbar");
+    $app->view->add("navbar1/navbar1");
+    $app->view->add("take1/flash");
     $app->view->add("take1/about");
+    $app->view->add("take1/byline");
+    $app->view->add("take1/footer");
+
+    $app->response->setBody([$app->view, "render"])
+                  ->send();
+});
+
+// $app->router->add efter att vi flyttat kod från report-routen till en vy istället.
+$app->router->add("report", function () use ($app) {
+    $app->view->add("take1/header", ["title" => "Report"]);
+    // $app->view->add("take1/navbar");
+    $app->view->add("navbar1/navbar1");
+    $app->view->add("take1/flash");
+    $app->view->add("take1/report");
+    $app->view->add("take1/footer");
 
     $app->response->setBody([$app->view, "render"])
                   ->send();
@@ -58,11 +79,14 @@ $app->router->add("about", function () use ($app) {
 // Route som skickar ett JSON-objekt som svar.
 $app->router->add("status", function () use ($app) {
     $data = [
+        "Current user" => get_current_user(),
         "Server" => php_uname(),
         "PHP version" => phpversion(),
         "Included files" => count(get_included_files()),
         "Memory used" => memory_get_peak_usage(true),
         "Execution time" => microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'],
+        // "phpinfo" => phpinfo(INFO_GENERAL, INFO_MODULES,INFO_ENVIRONMENT, INFO_VARIABLES),
+        // "phpinfo" => phpinfo(49),
     ];
 
     $app->response->sendJson($data);
