@@ -3,11 +3,11 @@
             <article>
                 <header>
                     <h3> About me </h3>
-                    <p class="author">Uppdated <time datetime="2017-05-01 22:05:37">the 1st of May 2017</time> by Anna</p>
+                    <p class="author">Uppdated <time datetime="2017-06-01 12:52:37">the 1st of June 2017</time> by Anna</p>
                 </header>
                     <div class="me-div">
-                        <p>
                             <img src="img/me-edit1.jpg" class="me-img" alt="Picture of Anna">
+                        <p>
                             This is my me-webpage in the programming course <a href="https://dbwebb.se/oophp">oophp</a>,
                             and this page gives a very brief presentation of me.<br/><br/>
 

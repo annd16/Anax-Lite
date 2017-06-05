@@ -3,21 +3,22 @@
  * Routes.
  */
 
- // Kod för att tilldela navbarens htmlkod till Navbarklassens variabel $htmlNavbar;
- // $app->navbar->setHTML();        // Alternativ 1
+// Kod för att tilldela navbarens htmlkod till Navbarklassens variabel $htmlNavbar;
+$app->navbar->setHTML();        // Alternativ 1    // Behöver skicka med $htmlNavbar in i vyn
+// $app->navbar->htmlNavbar = $app->navbar->getHTML();        // Borde fungera också (uten setHTML-metod?)      // Behöver skicka med $htmlNavbar in i vyn
 
- // $app->navbar->setCurrentRoute($app->request->getRoute());   // *** Att injecta beroende till en klass, alternativ2 *** //
- // $app->navbar->setUrlCreator([$app->url, "create"]);         // *** Att injecta beroende till en klass, alternativ2 *** //
+// $app->navbar->setCurrentRoute($app->request->getRoute());   // *** Att injecta beroende till en klass, alternativ2 *** //
+// $app->navbar->setUrlCreator([$app->url, "create"]);         // *** Att injecta beroende till en klass, alternativ2 *** //
 
- // Kod för att tilldela navbarens htmlkod till Navbarklassens variabel $htmlNavbar;
- $app->navbar->htmlNavbar = $app->navbar->getHTML($app->request->getRoute(), [$app->url, "create"]);        // Alternativ 3
-
+// Kod för att tilldela navbarens htmlkod till Navbarklassens variabel $htmlNavbar;
+// $app->navbar->htmlNavbar = $app->navbar->getHTML($app->request->getRoute(), [$app->url, "create"]);        // Alternativ 3       // Behöver skicka med $htmlNavbar in i vyn
 
 // $app->router->add efter att vi flyttat kod från me-routen till en vy istället.
 $app->router->add("", function () use ($app) {
     $app->view->add("take1/header", ["title" => "Me"]);
     // $app->view->add("take1/navbar");
     $app->view->add("navbar2/navbar2", ["navbar" => $app->navbar->htmlNavbar]);
+    // $app->view->add("navbar2/navbar2");
     $app->view->add("take1/flash");
     $app->view->add("take1/me");
     $app->view->add("take1/byline");
@@ -33,6 +34,7 @@ $app->router->add("about", function () use ($app) {
     $app->view->add("take1/header", ["title" => "About"]);
     // $app->view->add("take1/navbar");
     $app->view->add("navbar2/navbar2", ["navbar" => $app->navbar->htmlNavbar]);
+    // $app->view->add("navbar2/navbar2");
     $app->view->add("take1/flash");
     $app->view->add("take1/about");
     $app->view->add("take1/byline");
@@ -47,6 +49,7 @@ $app->router->add("report", function () use ($app) {
     $app->view->add("take1/header", ["title" => "Report"]);
     // $app->view->add("take1/navbar");
     $app->view->add("navbar2/navbar2", ["navbar" => $app->navbar->htmlNavbar]);
+    // $app->view->add("navbar2/navbar2");
     $app->view->add("take1/flash");
     $app->view->add("take1/report");
     $app->view->add("take1/footer");
@@ -60,6 +63,7 @@ $app->router->add("report", function () use ($app) {
 $app->router->add("session", function () use ($app) {
     $app->view->add("take1/header", ["title" => "Session"]);
     $app->view->add("navbar2/navbar2", ["navbar" => $app->navbar->htmlNavbar]);
+    // $app->view->add("navbar2/navbar2");
     // $app->view->add("take1/navbar");
     $app->view->add("session/navbar3");
     // $app->view->add("take1/flash");
@@ -75,6 +79,7 @@ $app->router->add("session", function () use ($app) {
 $app->router->add("calendar", function () use ($app) {
     $app->view->add("take1/header", ["title" => "Calendar"]);
     $app->view->add("navbar2/navbar2", ["navbar" => $app->navbar->htmlNavbar]);
+    // $app->view->add("navbar2/navbar2");
     $app->view->add("calendar/calendar");
 
     $app->response->setBody([$app->view, "render"])

@@ -1,3 +1,7 @@
+img {
+    max-width: 100%;
+}
+
 body {
     /*background-color: #8ff286;*/
     background-color: rgb(158, 237, 100);
@@ -8,12 +12,22 @@ body {
     box-sizing: border-box;
     border-top: 5px ridge #abbfa1;
     background-color: #abbfa1;
+    color: rgb(60, 65, 60);
     max-width: 1160px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     text-align: center;
     margin: 0 auto 0 auto;
-    padding: 0.2em 1em 0.1em 1em;
+    padding: 0.1em 1em 0.1em 1em;
+}
+
+h2 {
+    margin: 0.3em 0 0.3em 0;
+    clear: left;
+}
+
+h3 {
+    color: rgb(60, 65, 60);
 }
 
 
@@ -33,19 +47,50 @@ nav a {
     font-family: Monospace;
     font-weight: bold;
     color: #4565b5;
-    font-size: 18px;
+    font-size: 17px;
+}
+
+.navbar_session {
+    box-sizing: border-box;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    margin: 0 auto 6px auto;
+    padding: 0.2em 2em;
+    max-width: 1160px;
+    /*background-color: #dedfe2;*/
+    background-color: #dedfe2;
+}
+
+.navbar_session a {
+    /*border: 2px solid black;*/
+    margin: 0 10px;
+    font-family: Monospace;
+    font-weight: bold;
+    color: #4565b5;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* mouse over link  - verkar inte fungera i responsivt läge*/
+a:hover {
+    background-color: lightgreen;
+}
+
+/* selected link */
+a:active {
+    background-color: lightgreen;
 }
 
 main {
     /*border: 2px solid black;*/
-    background-color: yellow;
+    background-color: rgb(250,240,90);
     width: 65%;
     max-width: 860px;
     border-style: ridge;
     border-radius: 15px;
     margin: auto;
-    margin-bottom: 12px;
-    padding: 1.5em 0.5em;
+    margin-bottom: 6px;
+    padding: 1em 0.4em;
 }
 
 div.flash {
@@ -74,24 +119,29 @@ div.flash {
 
 
 article {
+    box-sizing: border-box;
     /*border: 2px solid black;*/
     background-color: #dedfe2;
     border-radius: 30px;
+    width: 85%;
     margin: 0 auto;
-    padding: 1.5em 2.5em;
-    max-width: 80%;
+    padding: 0.8em 2.2em;
     min-height: 400px;
     font-size: 15px;
 }
 
 article.report {
+    box-sizing: border-box;
+    width: 85%;
     padding: 1.5em 3em;
 }
 
 section {
-    max-width: 70%;
+    box-sizing: border-box;
+    width: 85%;
     margin: 0 auto;
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 1.25;
 }
 
 p.question {
@@ -111,7 +161,13 @@ p.question {
     margin-right: auto;
     font-size: 14px;
     font-style: italic;
-    padding: 0.5em 2em;
+    padding: 0.1em 1.5em;
+}
+
+div.byline > p {
+    margin: 0;
+    padding-top: 6px;
+    padding-bottom: 0;
 }
 
 footer {
@@ -128,58 +184,372 @@ footer a {
     font-size: 14px;
 }
 
+/* CALENDAR */
+
+main#calendar {
+    box-sizing: border-box;
+    width: 70%;
+    min-height: 725px;
+}
+
+h3.month {
+    color: rgb(20, 20, 20);
+    margin-left: 1em;
+}
+
+div.month {
+    box-sizing: border-box;
+    border: 1px dashed rgb(158, 237, 100);
+    border-radius: 5px;
+    width: 95%;
+    min-width: 80%;
+    margin: 2px auto;
+    padding: 0.2em;
+    overflow: auto;
+    min-height: 660px;
+}
+
+.week {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    max-width: 98%;
+    padding-top: 0;
+    padding-bottom: 0;
+    /*overflow: visible;*/
+}
+
+.day {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    box-sizing: content-box;        /* behöver vara padding-box annars kan den första o sista veckan få en anna storlek än de andra */
+    border: 1px solid black;
+    background-color: lightgrey;
+    display: inline;
+    margin: 1px;
+    padding: 0.1em 0.5em 0 0.5em;
+    font-weight: bold;
+    min-width: 2.5em;
+    min-height: 3em;
+    overflow: hidden;
+}
+
+.today {
+    border: 2px solid red;
+}
+
+.nameday {
+    box-sizing: border-box;
+    border: none;
+    font-size: 12px;
+    font-weight: normal;
+    padding-left: 0;         /* gör att namnsdagsnamnen blir linjerade vertikalt med datumet */
+    float: left;            /*  gör att namnsdagsnamnen (om två stycken) blir linjerade vertikalt med varandra */
+    /*overflow: hidden;*/
+}
+
+.day:hover {
+    text-overflow: inherit;
+    overflow: visible;
+}
+
+.different {
+    color: rgb(100, 100, 100);
+    font-weight: lighter;
+}
+
+.Sun {
+    color: red;
+}
+
+span {
+    margin: 1em;
+    overflow: visible;
+    display: inline-flex;    /* Behövs för att dagrutorna ska omsluta alla barnelement inkl namnsdagsnamnen*/
+}
+
+.weeknumber {
+    box-sizing: border-box;
+    padding-top: 1px;
+    padding-right: 1px;
+    border: 1px solid lightgrey;
+    margin-bottom: 40px;            /* Behövs för att rutorna kring veckonumren ska vara kvadratiska */
+}
+
+div.row {
+    margin: 0 auto;
+    /*padding: 0 !important;*/
+    padding: 0;
+    /*border: 6px solid hotpink;*/
+}
+
+.inner-wrap .flash {
+    box-sizing: border-box;
+    /*border: 2px solid black;*/
+    text-align: center;
+    margin: 0 auto;
+    width: 60%;
+    overflow: visible;
+}
+
+.outer-wrap .flash {
+    box-sizing: border-box;
+    /*border: 2px solid blue;*/
+    text-align: center;
+    /*margin: 0 auto;*/
+    /*overflow: auto;*/
+}
+
+.flash img {
+    box-sizing: border-box;
+    border: 3px solid green;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.inner-wrap.next_previous {
+    box-sizing: border-box;
+    /*border: 2px solid black;*/
+    text-align: center;
+    margin: auto;
+    overflow: visible;      /* Fick bort scrollbaren  */
+}
+
+.outer-wrap.next_previous {
+    box-sizing: border-box;
+    /*border: 2px solid blue;*/
+    margin-bottom: 0.5em;
+}
+
+.next_previous a {
+    box-sizing: border-box;
+    border: 4px ridge beige;
+    background-color: rgb(242, 239, 231);
+    padding: 0 2em 0 1em;
+}
+
+
+/* SESSION */
+
+
+input {
+    box-sizing: border-box;
+    /*border: 2px solid black;*/
+    font-family: monospace;
+    padding: 0.75em;
+    margin-left: 0.5em;
+    float: left;
+}
+
+.button {
+    /*border: 2px solid black;*/
+    margin: 0.5em;
+    padding: 0.5em;
+    overflow: auto;
+}
+
+.button1 {
+    /*float: left;*/
+    background-color: lightblue;
+}
+
+.button2 {
+    /*float: left;*/
+    background-color: yellow;
+}
+
+.button3 {
+    /*float: left;*/
+    background-color: green;
+}
+
+.button4 {
+    /*float: left;*/
+    background-color: orange;
+}
+
+.button5 {
+    /*float: left;*/
+    background-color: purple;
+}
+
+.content {
+    box-sizing: border-box;
+    margin: 0 auto 6px auto;
+    padding: 0.2em 0.5em;
+    max-width: 1160px;
+}
+
 /**
  * responsive
  */
 
-/* Media-queries måste ligga slutet på filen för att fungera?!! */
+/* Media-queries måste ligga i slutet på filen för att fungera?!! */
+
+@media screen and (max-width: 1150px) {
+    .byline {
+         width: 35%;
+    }
+}
+
+@media screen and (max-width: 1090px) {
+    article {
+         width: 90%;
+    }
+}
+
+@media screen and (max-width: 1035px) {
+    article {
+         width: 92%;
+    }
+}
+
+@media screen and (max-width: 1015px) {
+    article {
+         width: 95%;
+    }
+}
 
 @media screen and (max-width: 995px) {
-    article {
-         width: 80%;
-    }
-}
-
-@media screen and (max-width: 750px) {
-    article {
-         margin: 0 10% 0 0;
-         width: 80%;
-    }
-}
-
-@media screen and (max-width: 650px) {
-
-    .me-img {
-        float: none;
-        margin: auto;
-        width: 38%;
+    article.report {
+        padding: 1em 2em;
+        background-color: blue;
     }
     section {
-        width: 80%;
-        margin: 0 auto;
+        width: 90%;
+        margin: 0 5% 0 5%;
+    }
+    .me-img {
+        width: 45%;
+    }
+    main#calendar {
+        background-color: purple;
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+        overflow: auto;
+    }
+    div.month {
+        background-color: red;
+         margin: 0 5% 0 5%;
+         width: 90%;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    main {
+        /*border: 2px solid black;*/
+        background-color: pink;
+        width: 70%;
     }
     article.report {
         width: 90%;
-        padding: 1em 2em;
+        background-color: brown;
+    }
+    section {
+        width: 90%;
+        margin: 0 5% 0 5%;
+    }
+    .me-img {
+        width: 40%;
+    }
+    .byline {
+         width: 40%;
+    }
+    main#calendar {
+        background-color: brown;
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        overflow: auto;
+    }
+    div.month {
+        background-color: red;
     }
 }
 
-@media screen and (max-width: 500px) {
-
-    .me-img {
-        width: 70%;
-    }
-
+@media screen and (max-width: 760px) {
     main {
-        padding: 25px 70px 25px 30px;
+        /*border: 2px solid black;*/
+        background-color: beige;
+        width: 75%;
+    }
+    article {
+         width: 85%;
+         margin: 0 auto;
+    }
+    article.report {
+        width: 95%;
+        background-color: brown;
+    }
+    section {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .byline {
+        width: 45%;
+    }
+    main#calendar {
+        background-color: turquoise;
+        width: 85%;
+        margin-left: 7.5%;  /* Blev av med horisontella scroll-baren */
+        margin-right: 7.5%;
+        overflow: auto;
+    }
+    div.month {
+        background-color: red;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    main {
+        /*border: 2px solid black;*/
+        background-color: beige;
+        width: 80%;
+    }
+    nav a {
+        font-weight: normal;
+        font-size: 16px;
+    }
+    section {
+        width: 90%;
+    }
+    article.report {
+        width: 95%;
+        padding: 1em 2em;
+        background-color: blue;
+    }
+    .byline {
+         width: 55%;
+    }
+    main#calendar {
+        background-color: pink;
+        width: 100%;
+        margin: 0;
+        overflow: auto;
     }
 
+    div.month {
+        background-color: blue;
+        width: 98%;
+        margin: 0 1%;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    main {
+        width: 90%;
+        padding: 1em;
+    }
     article {
-         margin: 0 15% 0 0;
-         width: 85%;
+         width: 95%;
+         margin: 0 auto;
      }
     section {
-        width: 100%;
+        width: 85%;
         margin: 0 auto;
     }
     article.report {
@@ -187,27 +557,147 @@ footer a {
         padding: 1em 1em;
         margin: 0 auto;
     }
+    img.me-img {
+        float: none;
+        width: 45%;
+        margin: 0 auto;
+    }
+    nav {
+        margin: 0;
+        padding: 0;
+        float: left;
+    }
+    nav a {
+        font-size: 13px;
+        display: block;
+    }
+    .navbar_session {
+        margin: 0;
+        padding: 0;
+        float: right;
+    }
+    /*Påverkar både Flashbilden i kalendern OCH den vanliga?!*/
+    .flash img {
+        max-width: 75%;
+        display: inline;
+    }
+    .byline {
+         width: 60%;
+    }
+    main#calendar {
+        background-color: turquoise;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        overflow: auto;
+    }
+    div.month {
+        background-color: yellow;
+         width: 100%;
+         margin: 0;
+         padding: 0;
+    }
+    .week {
+        box-sizing: border-box;
+        display: -webkit-flex;
+        display: flex;
+        justify-content: center;
+        max-width: 100%;
+        margin: 1px 0;
+        /*padding: 0 !important;*/
+        padding: 0;
+    }
+    .weeknumber {
+        margin: 0;
+    }
+    .day {
+        /*padding: 0 !important;*/
+        padding: 0;
+        font-size: 13px;
+    }
+    .day.nameday {
+        font-size: 11px;
+    }
 }
 
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 400px) {
     main {
-        padding: 1em 1em;
+        width: 98%;
+        padding: 1%;
+    }
+    article {
+         width: 95%;
+         padding: 1em;
+     }
+    article.report {
+        width: 95%;
+        padding: 0.1em;
+        padding-left: 1em;
+    }
+    section {
+        width: 100%;
+        padding: 0;
+        margin: 0 auto;
+    }
+    .navbar_session {
+        display: none;
+    }
+    main#calendar {
+        background-color: red;
+        min-height: 503px;
+    }
+    div.month {
+        background-color: pink;
+        min-height: 438px;
     }
     nav a {
         margin: 0 10px;
         font: 14px;
     }
 
-    article {
-        margin: 0 10% 0 0;
-        width: 90%;
-        padding: 25px 25px;
-    }
     section {
         max-width: 80%;
         margin: 0 auto;
         padding: 0;
     }
+    .day.nameday {
+        display: none;         /* Namnsdagarna visas inte på enheter mindre än 400px */
+    }
+}
 
+@media screen and (max-width: 360px) {
+    main {
+        clear: both;
+    }
+    main#calendar {
+        background-color: blue;
+    }
+    nav {
+        margin: 0;
+        padding: 0;
+        float: left;
+        /*display: inline;*/
+    }
+    .flash img {
+        /*float: right;*/
+        max-width: 100%;
+        width: 100%;
+    }
+    .row {
+        overflow: auto;
+    }
+    .inner-wrap .flash {
+        display: inline;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow: auto;
+    }
+    .outer-wrap .flash {
+        margin: 0;
+        padding: 0;
+        width: 90%;
+        float: right;
+    }
 }

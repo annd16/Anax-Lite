@@ -10,8 +10,7 @@
  // $app->navbar->setUrlCreator([$app->url, "create"]);         // *** Att injecta beroende till en klass, alternativ2 *** //
 
  // Kod för att tilldela navbarens htmlkod till Navbarklassens variabel $htmlNavbar;
- $app->navbar->htmlNavbar = $app->navbar->getHTML($app->request->getRoute(), [$app->url, "create"]);        // Alternativ 3
-
+$app->navbar->htmlNavbar = $app->navbar->getHTML($app->request->getRoute(), [$app->url, "create"]);        // Alternativ 3
 
 // $app->router->add efter att vi flyttat kod från me-routen till en vy istället.
 $app->router->add("", function () use ($app) {

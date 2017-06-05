@@ -1,4 +1,5 @@
 <main>
+
 <article class="report">
 
 
@@ -41,16 +42,66 @@ så ska det förhoppningsvis gå bra. Återkommer i kmom02 eller kmom03 med ett 
 <h3>Kmom02</h3>
 
 <p class="question">Hur känns det att skriva kod utanför och inuti ramverket, ser du fördelar och nackdelar med de olika sätten?</p>
-....
+
+Fördelen med att skriva kod inuti ramverket borde ju vara att man får tillgång till dess klasser och metoder, interfaces och traits och slipper skriva allt själv.
+Nackdelen är väl det kanske inte alltid är helt lätt att sätta sig in i hur ramverket fungerar, och att det är lite mer uppstyrt vad man kan göra och hur man ska göra det.
+Har nog inte utnyttjat ramverket och dess resurser i den omfattning som jag kanske borde gjort än så länge.
+
 <p class="question">Hur väljer du att organisera dina vyer?</p>
-....
+
+Jag har skapat olika underkataloger i vymappen och grupperat vyerna i dessa. De vyer som finns är header, navbar, extra navbar (på sessionssidan), flash, huvudinnehållet,
+byline (på me och about-sidan) och så footer (på me-, about- och report-sidan). Eftersom man ska sträva efter att ha så enkla vyer som möjligt har jag försökt att placera så mycket av 'logiken' som möjligt
+i mina klasser istället för i vyerna, men i t ex kalendern så finns det förbättringsmöjligheter i det avseendet.
+
 <p class="question">Berätta om hur du löste integreringen av klassen Session.</p>
-...
+
+Routen till huvudsession-sidan lade jag i base-filen, sedan fick de olika undervyerna ligga i en egen route-fil, 'session.php'.
+Inkluderade sedan denna fil i route-configfilen 'route.php'. Lade till Sessionsklassen till $app-objektet i frontcontrollern
+och skickar med sessionens namn in i konstruktorn. Sessionen startas sedan i en session-configfil som inkluderas i varje sessionsvy.
+Sessionsvyerna ligger i en egen underkatalog i vymappen.<br/><br/>
+
+I navbar-fallet testade jag att injicera beroendet av Url- och Requestklassen in i Navbarklassen  på flera olika sätt (enligt alternativ 1-3, i övning 2):
+1) låta Navbar-klassen få tillgång till hela $app.
+2) injicera endast de delar av Request och Url-klassen som behövs (via två metoder i navbarklassen).
+3) injicera beroendena när man genererar menyn.
+ <br/>
+Fastnade för alternativ 3, dvs jag injicerar de beroenden som finns, i samband med anropet till getHTML(). Nuvarande route och 'url-skaparen' (dvs en array som innehåller
+Url-objektet och dess metod 'create') skickas med som inparametrar till getHTML(). Anropet till getHTML() ligger i den routefil som innehåller de routes som använder
+sig av navbaren, värdet från den variabel som returneras från metoden skickas med in till vyn när navbarvyn läggs till i de olika sidor som använder sig av navbaren.
+I navbar-vyn så finns endast en echo-sats av denna variabel. <br/>
+Av ovanstående tre alternativ var det denna lösning som resulterade i minst kod. Enklast hade varit att använda alternativ 1, men de två andra sätten ger (nog) mer inblick
+i vad som görs 'bakom kulisserna'. Med alternativ 2, som först kändes som den mest naturliga lösningen blev det av någon anledning mer kod i vyn,
+så jag valde bort detta alternativ.
+
 <p class="question">Berätta om hur du löste uppgiften med Tärningsspelet 100/Månadskalendern, hur du tänkte, planerade och utförde uppgiften samt hur du organiserade din kod?</p>
-...
+
+Jag valde att göra månadskalendern eftersom den verkade roligare att göra än tärningspelet och mer användbar.
+Jag började med att kolla upp de olika inbyggda klasser/objekt/funktioner som finns i php som hanterar datum och tid. Sedan skapade jag en kalenderklass som först inte innehöll mer än en par "bra-att-ha" funktioner,
+som att visa dagens datum, sedan gjorde jag en veckoklass i vars konstruktor det skapas ett intervall med 7st datumtid-objekt.
+I en metod i kalender-klassen skapas veckorna som ingår i en viss månadsvy (inkl. ev. dagar i första och sista veckan som inte tillhör månaden).
+Lade även in veckonumren (extrauppgift), eftersom jag själv tycker att en kalender inte är komplett utan veckonummer, och för att det verkade vara rätt lätt att genomföra.
+När jag väl fått kalendern att fungera började jag flytta över kod från vyn till metoder i kalenderklassen.
+ <br/><br/>
+Därefter lade jag in namnsdagar i min kalender (extrauppgift), ville testa att i php göra motsvarande det vi gjort i webbappkursen. (Namnsdagarna visas dock endast på enheter med
+en skärmbredd större än 400px). Tyvärr visade det sig vid publiceringen att 'curl lib', som jag använt för att hämta hem information, inte går att använda på studentservern så jag fick ladda hem namnsdagarna lokalt
+från min dator och spara dem i en fil (och låta kalendern läsa från filen istället). Eftersom namnsdagarna är rätt statiska och normalt inte förändras från ett år till ett annat,
+laddade jag bara hem två år, ett vanligt år och ett skottår. Har dock behållit 'curl lib' alternativet för de sevrar som tillåter användning av detta bibliotek, denna lösning känns lite proffsigare.
+I det ena fallet hämtas data månadsvis och i det andra fallet för ett helt år, så jag har olika metoder som hanterar de två fallen. Har en metod i kalenderklassen för att markera
+aktuella dagen. Har lagt till Namnsdagsklassen till $app-objektet liksom jag tidigare gjort med kalenderklassen.
+<br/><br/>
+Vid valideringen visade det sig att komplexiteten var för hög i min kalender-klass så då fick jag skapa en till klass, en 'Namnsdagsklass' och föra över tillhörande metoder till denna.
+Har använt css vid designen och har försökt använda flex-box: kalendern uppför sig OK för skärmar som är ca 350px eller bredare (i alla fall i x-led, det blir det en del scrollande i y-led
+men det får jag fixa till senare). <br/><br/>
+Detta har varit en mycket rolig och lärorik uppgift. Har fått hjälp i gitterchatten och i hangout vid ett flertal tillfällen.
+ <br/><br/>
+
+
 
 <p class="question">Några tankar kring SQL så här långt?</p>
-...
+
+Hitintills så har det inte varit några större problem, förutom att jag först inte förstod hur man skulle göra för att ta bort flera
+rader i en tabell, trodde man skulle kunna använda sig av något liknande SELECT *, men det gick ju inte.
+Jag ser fram emot att så småningom kunna göra (egna) lite mer avancerade databasprojekt.
 <br/><br/>
 
 </section>

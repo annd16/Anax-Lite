@@ -64,7 +64,7 @@ $app->calendar = new \anna\Calendar\Calendar($app->nameday);
 // Create the container that will hold the navbar
 // $app->navbar = new \anna\Navbar\Navbar();
 // // Inject $app into the navbar for use in navbar.
-// $app->navbar->setApp($app);         // *** Att injecta beroende till en klass, alternativ1 *** //
+$app->navbar->setApp($app);         // *** Att injecta beroende till en klass, alternativ1 *** //
 //
 // // Update navbar configuration with values from the configuration
 $app->navbar->configure("navbar.php");      // *** Att injecta beroende till en klass, alla alternativ*** //
@@ -73,14 +73,14 @@ $app->navbar->configure("navbar.php");      // *** Att injecta beroende till en 
 // *** Injecta endast de delar som behövs in i Navbar-klassen *** //
 // *** genom att skapa metoder i klassen  *** //
 // *******************************************************//
-// // Metod 1: Injecta nuvarande route (en metod som tar emot nuvarande route).
+// Metod 1: Injecta nuvarande route (en metod som tar emot nuvarande route).
 // Tanken är är att vi, likt hur Url sätts upp, skickar in nuvarande route in i klassen så den kan ta del av den. Så här.
 // $app->navbar->setCurrentRoute($app->request->getRoute());   // *** Att injecta beroende till en klass, alternativ2 *** // Har kommenterat bort denna rad 2/6
 // Metod 2: Den andra delen är att navbar skall kunna skapa länkar via $app->url->create().
 // Även detta beroende kan vi injecta in i klassen via en metod.
 // Det vi skickar in är en funktion, en callable.
 // $app->navbar->setUrlCreator([$app->url, "create"]);         // *** Att injecta beroende till en klass, alternativ2 *** // Har kommenterat bort denna rad 2/6
-// Arrayen [$app->url, "create"] är här det som betraktas som en callable.
+// // Arrayen [$app->url, "create"] är här det som betraktas som en callable.
 
 
 
@@ -114,6 +114,7 @@ $url = new \Anax\Url\Url();
 // Update url configuration with values from config file.
 $app->url->configure("url.php");
 $app->url->setDefaultsFromConfiguration();
+
 
 // Använder én av ramverkets metoder för att Lägga till stylesheeten
 //(i form av en asset/tillgång)
